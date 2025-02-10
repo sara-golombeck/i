@@ -49,7 +49,7 @@ pipeline {
         
         stage('Build and Deploy') {
             steps {
-                configFileProvider([configFile(fileId: 'maven-settings', variable: 'MAVEN_SETTINGS')]) {
+                configFileProvider([configFile(fileId: 'MyArtifactory-Settings', variable: 'MAVEN_SETTINGS')]) {
                     sh "mvn -s $MAVEN_SETTINGS clean deploy"
                 }
             }
