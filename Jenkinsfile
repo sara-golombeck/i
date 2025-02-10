@@ -7,9 +7,9 @@ pipeline {
     stages {
        stage('Checkout') {
            when {
-               expression { 
-                   return env.BRANCH_NAME ==~ /(master|staging|feature\/.*)/
-               }
+            //    expression { 
+            //        return env.BRANCH_NAME ==~ /(master|staging|feature\/.*)/
+            //    }
            }
            steps {
                checkout scm
