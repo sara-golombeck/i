@@ -5,12 +5,18 @@ pipeline {
         jdk 'JAVA_8'
     }
     stages {
-        stage('Checkout') {
-            steps {
-                git branch: 'main',
-                    url: 'git@gitlab.com:saraGo/sara-thumbnailer-image-io.git'
-            }
-        }
+       stage('Checkout') {
+           when {
+               expression { 
+                   return env.BRANCH_NAME ==~ /(master|staging|feature\/.*)/
+               }
+           }
+           steps {
+               checkout scm
+           }
+       }
+    
+        
         stage('Build and Deploy') {
             steps {
                 configFileProvider([configFile(fileId: 'maven-settings', variable: 'MAVEN_SETTINGS')]) {
